@@ -110,7 +110,7 @@ function main() {
   function moveDino() {
     if (dinoX > 90 && movingLeft == true && isJumping == false) {
       dinoX -= 10;
-    } else if (movingRight == true && isJumping == false) {
+    } else if (dinoX < 880 && movingRight == true && isJumping == false) {
       dinoX += 10;
     } else if (dinoX <= 90) {
       movingLeft = false;
@@ -157,13 +157,21 @@ function main() {
       window.requestAnimationFrame(makeObstacles);
     }
   }
+
+  function resetPos() {
+    dinoY = 200;
+    dinoX = 90;
+    cactus.x = 1000;
+  }
   
   function checkCollision() {
-    if (cactus.x >= dinoX - 40 && cactus.x <= dinoX + 70 && cactus.y >= dinoY - 80) {
+    console.log(dinoX)
+    console.log(cactus.x)
+    if (cactus.x >= dinoX - 40 && cactus.x <= dinoX + 70 && isJumping == false) {
       dead = true;
       retry = prompt("You died! Your score was " + score + "\nTry again? (y/n)");
       if (retry == "y") {
-        cactus = new FakeCactus(score);
+        resetPos()
         main();
       } 
     }
