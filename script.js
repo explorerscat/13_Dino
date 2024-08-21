@@ -159,12 +159,11 @@ function main() {
   }
   
   function checkCollision() {
-    console.log(dinoX)
-    console.log(cactus.x)
-    if (cactus.x >= dinoX && cactus.x <= dinoX + 80 && isJumping == false) {
+    if (cactus.x >= dinoX - 40 && cactus.x <= dinoX + 80 && isJumping == false) {
       dead = true;
       retry = prompt("You died! Your score was " + score + "\nTry again? (y/n)");
       if (retry == "y") {
+        cactus = new FakeCactus(score);
         main();
       } 
     }
