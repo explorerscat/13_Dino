@@ -159,7 +159,7 @@ function main() {
   }
   
   function checkCollision() {
-    if (cactus.x >= dinoX - 40 && cactus.x <= dinoX + 70 && isJumping == false) {
+    if (cactus.x >= dinoX - 40 && cactus.x <= dinoX + 70 && cactus.y >= dinoY - 80) {
       dead = true;
       retry = prompt("You died! Your score was " + score + "\nTry again? (y/n)");
       if (retry == "y") {
