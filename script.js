@@ -115,6 +115,9 @@ function main() {
     } else if (dinoX <= 90) {
       movingLeft = false;
       dinoX = 90;
+    } else if (dinoX >= 880) {
+      movingRight = false;
+      dinoX = 880;
     }
     if (dead == false) {
       window.requestAnimationFrame(moveDino)
