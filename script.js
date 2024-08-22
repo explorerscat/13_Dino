@@ -148,7 +148,7 @@ function main() {
     }
   });
   
-  let cactus = new FakeCactus(score);
+  let cactus = new FakeCactus();
   
   function makeObstacles() {
     cactus.update();
