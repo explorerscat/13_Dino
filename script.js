@@ -125,25 +125,25 @@ function main() {
   }
   
   window.addEventListener("keydown", (event) => {
-    if (event.key == "ArrowDown") {
+    if (event.key == "ArrowDown" || event.key == "s") {
       isShort = true;
-    } else if (event.key == "ArrowUp" || event.key == " ") {
+    } else if (event.key == "ArrowUp" || event.key == " " || event.key == "w") {
       if (isShort == false) {
         isJumping = true;
       }
-    } else if (event.key == "ArrowLeft") {
+    } else if (event.key == "ArrowLeft" || event.key == "a") {
       movingLeft = true;
-    } else if (event.key == "ArrowRight") {
+    } else if (event.key == "ArrowRight" || event.key == "d") {
       movingRight = true;
     }
   });
   
   window.addEventListener("keyup", (event) => {
-    if (event.key == "ArrowDown") {
+    if (event.key == "ArrowDown" || event.key == "s") {
       isShort = false;
-    } else if (event.key == "ArrowLeft") {
+    } else if (event.key == "ArrowLeft" || event.key == "a") {
       movingLeft = false;
-    } else if (event.key == "ArrowRight") {
+    } else if (event.key == "ArrowRight" || event.key == "d") {
       movingRight = false;
     }
   });
