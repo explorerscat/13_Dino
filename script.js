@@ -4,6 +4,7 @@ function main() {
   let ctx = canvas.getContext("2d");
   
   const dinoSize = 160; // dino is a square, no need for separate width and height
+  const dinoSpeed = 10;
   
   const dinoStanding1 = new Image();
   dinoStanding1.src = "dino-standing 1.png";
@@ -25,6 +26,7 @@ function main() {
   let movingRight = false;
   let isShort = false;
   let dinoFrame = 0; // 0 for dinoStanding1, 1 for dinoStanding2, 2 for dinoShort1, 3 for dinoShort2
+  let speedmultiplier = 1;
   
   class FakeCactus {
     constructor() {
@@ -51,8 +53,10 @@ function main() {
     } else if (isShort == false && dinoFrame >= 2) {
       dinoFrame -= 2;
     }
-    if (dinoX != 90 && isJumping == false) {
+    if (dinoX != 90 && isJumping == false && speedmultiplier == 1) {
       dinoX -= 1;
+    } else if (dinoX != 90 && isJumping == false && speedmultiplier == 2) {
+      dinoX -= 5;
     }
     if (dinoFrame == 0) {
       ctx.drawImage(dinoStanding1, dinoX, dinoY, dinoSize, dinoSize);
@@ -108,10 +112,15 @@ function main() {
   }
   
   function moveDino() {
+    if (isShort == true) {
+      speedmultiplier = 2;
+    } else {
+      speedmultiplier = 1;
+    }
     if (dinoX > 90 && movingLeft == true && isJumping == false) {
-      dinoX -= 10;
+      dinoX -= dinoSpeed * speedmultiplier;
     } else if (dinoX < 880 && movingRight == true && isJumping == false) {
-      dinoX += 10;
+      dinoX += dinoSpeed * speedmultiplier;
     } else if (dinoX <= 90) {
       movingLeft = false;
       dinoX = 90;
@@ -169,11 +178,11 @@ function main() {
       dead = true;
       retry = prompt("You died! Your score was " + score + "\nTry again? (y/n)");
       if (retry == "y") {
-        resetPos()
+        resetPos();
         main();
-      } 
+      }
     }
-    window.requestAnimationFrame(checkCollision);
+    window.requestAnimationFrame(checkCollision); 
   }
   
   Promise.all([
@@ -182,14 +191,12 @@ function main() {
     new Promise((resolve) => { dinoShort1.onload = resolve; }),
     new Promise((resolve) => { dinoShort2.onload = resolve; })
   ]).then(() => {
-    if (dead == false) {
       window.requestAnimationFrame(jump);
       window.requestAnimationFrame(drawDino);
       window.requestAnimationFrame(drawScore);
       window.requestAnimationFrame(makeObstacles);
       window.requestAnimationFrame(checkCollision);  
       window.requestAnimationFrame(moveDino);
-    }
   });
 }
 main();
