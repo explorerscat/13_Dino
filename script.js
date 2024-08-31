@@ -173,9 +173,7 @@ function main() {
         main();
       } 
     }
-    if (dead == false) {
-      window.requestAnimationFrame(checkCollision);
-    }
+    window.requestAnimationFrame(checkCollision);
   }
   
   Promise.all([
