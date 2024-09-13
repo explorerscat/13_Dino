@@ -181,8 +181,9 @@ function main() {
         resetPos();
         main();
       }
+    } else {
+    window.requestAnimationFrame(checkCollision);
     }
-    window.requestAnimationFrame(checkCollision); 
   }
   
   Promise.all([
