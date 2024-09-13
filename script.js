@@ -7,13 +7,13 @@ function main() {
   const dinoSpeed = 10;
   
   const dinoStanding1 = new Image();
-  dinoStanding1.src = "dino-standing 1.png";
+  dinoStanding1.src = "dino-standing-1.png";
   const dinoStanding2 = new Image();
-  dinoStanding2.src = "dino-standing 2.png";
+  dinoStanding2.src = "dino-standing-2.png";
   const dinoShort1 = new Image();
-  dinoShort1.src = "dino-short 1.png";
+  dinoShort1.src = "dino-short-1.png";
   const dinoShort2 = new Image();
-  dinoShort2.src = "dino-short 2.png";
+  dinoShort2.src = "dino-short-2.png";
   
   let score = 0;
   let dead = false;
